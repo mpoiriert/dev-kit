@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  php:
+    build: .docker/php
+    volumes:
+      - .:/home/wwwroot
+      - ~/composer:/home/dev/.composer
+      - ./.docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+      - ./.docker/php/php.ini:/etc/php/7.4.3/php.ini:ro
+      - ./.docker/php/php-fpm-pool.conf:/etc/php/7.4.3/pool.d/www.conf
+    ports:
+      - '9001:9001'
+

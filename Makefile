@@ -91,3 +91,21 @@ psalm:
 rector:
 	vendor/bin/rector
 .PHONY: rector
+
+
+docker-install: docker-build docker-up
+	docker-compose exec php composer install
+	docker-compose exec php vendor/bin/phpunit
+.PHONY: docker-install
+
+docker-down:
+	docker-compose down --remove-orphans
+.PHONY: docker-down
+
+docker-up:
+	docker-compose up -d
+.PHONY: docker-up
+
+docker-build:
+	docker-compose build
+.PHONY: docker-build
